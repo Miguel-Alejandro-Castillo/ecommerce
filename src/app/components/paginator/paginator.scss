@@ -1,0 +1,210 @@
+$bootstrap-sass-asset-helper: false !default;
+//
+// Variables
+// --------------------------------------------------
+$border-radius: 15px;
+$icbc-border-radius: 10px;
+//ICBC Colors
+$icbc-primary: #c4161c;
+$icbc-primary-hover: #9b000a;
+$icbc-primary-disabled: #dd9ba8;
+$icbc-secondary: #6f6f6f;
+$icbc-secondary-hover: #3f3f3f;
+$icbc-secondary-disabled: #b7b7b7;
+//Colors for backgrounds and lines
+$icbc-background: #f3f4f4;
+$icbc-background-hover: darken($icbc-background, 2%);
+$white-hover: darken(white, 2%);
+$icbc-stroke: #c9c9c9;
+$icbc-tableLine: #e1e1e1;
+//Color for borders
+$icbc-border-grey: #818282;
+//Colors for fonts only
+$icbc-font-link: #31a1d4;
+$icbc-font-header: #333333;
+$icbc-font-darkBlueGrey: #4d565f;
+$icbc-font-blueGrey: #818b95;
+$icbc-font-darkGrey: #676767;
+$icbc-font-grey: #bfbebe;
+$icbc-font-white: #ffffff;
+//Feedback Colors
+$icbc-danger: $icbc-primary;
+$icbc-warning: #96722e;
+$icbc-success: #80af79;
+$icbc-info: #447eaf;
+$icbc-dangerLigth: #f7f0f0;
+$icbc-warningLigth: #f8f4d5;
+$icbc-successLigth: #f4f9f2;
+$icbc-infoLigth: #dfedf4;
+$icbc-dangerLigth-hover: darken($icbc-dangerLigth, 2%);
+$icbc-warningLigth-hover: darken($icbc-warningLigth, 2%);
+$icbc-successLigth-hover: darken($icbc-successLigth, 2%);
+$icbc-infoLigth-hover: darken($icbc-infoLigth, 2%);
+$icbc-highlighted-pill: #A89870;
+$icbc-highlighted-text: #DBCEB2;
+//Operation Status colors
+$icbc-status-draft: #808184;
+$icbc-status-reopened: #333333;
+$icbc-status-created: #333333;
+$icbc-status-signed: #dbad2b;
+$icbc-status-approved: $icbc-status-signed;
+$icbc-status-released: #68c933;
+$icbc-status-process: #4776ba;
+$icbc-status-denied: #ce2439;
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+//Bootstrap colors: DO NOT USE THEM!
+$gray-base: #000000 !default;
+$gray-darker: $icbc-font-header; //lighten($gray-base, 13.5%) !default; // #222
+$gray-dark: $icbc-font-darkBlueGrey; //545454
+$gray: $icbc-font-darkGrey; //818181
+$gray-light: $icbc-font-grey; //c6c6c6
+$gray-lighter: $icbc-background; //eee
+$gray-advanced: $icbc-font-grey;
+$brand-primary: $icbc-primary;
+$brand-primary-dark: darken($icbc-primary, 20.5%);
+$brand-primary-light: lighten($icbc-primary, 20.5%);
+$brand-secondary: $icbc-secondary;
+$brand-success: $icbc-success;
+$brand-success-light: $icbc-successLigth;
+$brand-success-medium: lighten($brand-success, 20%);
+$brand-info: $icbc-info;
+$brand-info-light: $icbc-infoLigth;
+$brand-info-medium: lighten($brand-info, 40%);
+$brand-warning: $icbc-warning;
+$brand-warning-light: $icbc-warningLigth;
+$brand-warning-medium: lighten($brand-warning, 20%);
+$brand-danger: $icbc-primary;
+$brand-danger-light: $icbc-dangerLigth;
+$brand-danger-medium: lighten($brand-danger, 40%);
+$brand-link: $icbc-font-link;
+$brand-background: $icbc-background;
+$font-primary: $icbc-font-darkBlueGrey;
+$font-dark: $icbc-font-darkGrey;
+$font-light: $icbc-font-blueGrey;
+$font-lighter: $icbc-font-grey;
+$font-header: $icbc-font-header;
+$alert-danger: $icbc-primary;
+$alert-danger-light: $icbc-dangerLigth;
+$alert-info: $icbc-info;
+$alert-info-light: $icbc-infoLigth;
+$alert-warning: $icbc-warning;
+$alert-warning-light: $icbc-warningLigth;
+$alert-success: #80af79;
+$alert-success-light: $icbc-successLigth;
+$button-primary-hover: $icbc-primary-hover;
+$button-secundary-hover: $icbc-secondary;
+$button-table-hover: $icbc-secondary-hover;
+$button-disable: 0.3;
+$table-checked: $icbc-infoLigth;
+$table-cout: $icbc-font-grey;
+$boxshadow: 1px 1px 7px 0px rgba(6, 6, 6, 0.2);
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+$title-font: "Gustan-Book";
+$title-font-bold: "Gustan-Bold";
+$font-family-sans-serif: "Arial", Helvetica, sans-serif;
+//FONTS icbc
+$font-size-base: 14px;
+$font-size-large: 18px;
+$font-size-small: 13px;
+$font-size-tiny: 10px;
+$font-size-label: 12px;
+$font-size-input: 12px;
+$font-size-table: 12px;
+
+
+
+$font-size-sections-link: 13px;
+$font-size-alertTitle: 18px;
+$font-size-alertLink: 12px;
+
+$font-size-h1: 26px; // ~36px
+$font-size-h2: 21px; // ~30px
+$font-size-h3: 18px; // ~24px
+
+//function  px to rem icbc-font-prem(px);
+$icbc-font-size-base: $font-size-base;
+$icbc-font-size-large: $font-size-large;
+$icbc-font-size-small: $font-size-small;
+$icbc-font-size-tiny: $font-size-tiny;
+$icbc-font-size-label: $font-size-label;
+$icbc-font-size-input: $font-size-input;
+$icbc-font-size-table: $font-size-table;
+$icbc-font-size-sectionslink: $font-size-sections-link;
+$icbc-font-size-alertTitle: $font-size-alertTitle;
+$icbc-font-size-alertLink: $font-size-alertLink;
+$icbc-font-size-h1: $font-size-h1;
+$icbc-font-size-h2: $font-size-h2;
+$icbc-font-size-h3: $font-size-h3;
+$icbc-font-size-title:24px;
+//FontIcons
+$icbc-icons: "icbc-font";
+$icbc-size-icons: 30px;
+// FontAwesome
+$fa-font-path: "assets/fonts/font-awesome";
+// == Bootstrap Select
+$width-default: 100%; // 3 960px-grid columns
+
+
+// Iconos alertas
+$icon-alert-warn: "assets/images/icons/alert-warning.svg";
+$icon-alert-dang: "assets/images/icons/alert-danger.svg";
+$icon-alert-succ: "assets/images/icons/alert-success.svg";
+$icon-alert-inf: "assets/images/icons/alert-info.svg";
+
+
+.paginator {
+	text-align: center;
+	margin: 30px 0;
+	
+	&__ellipses {
+		margin: 0 .7em;
+		min-width: 2em;
+		padding: .3em;		
+	}
+
+	&__page{
+		text-decoration: none;
+		display: inline-block;
+		margin: 0 .7em;
+		color: $icbc-font-darkGrey;
+		&:hover{
+			color: $icbc-font-link;
+		}
+
+		&:hover{
+			color: $icbc-font-link;
+		}
+		
+		min-width: 2em;
+		padding: .3em;
+
+		&--active{
+			background-color: $icbc-primary;
+			border-radius: 1em 1em 1em 1em ;
+			cursor: default;
+			&, &:hover{
+				color: $icbc-background;
+			}
+		}
+	}
+
+	&__link {
+		text-decoration: none;
+		color: $icbc-font-link;
+		display: inline-block;
+		padding: 0 1em;	
+
+		&--disabled{
+			color: $icbc-font-grey;
+			cursor: not-allowed;
+		}
+	}
+
+	&__mat-icon{
+		vertical-align: middle;
+	}
+}

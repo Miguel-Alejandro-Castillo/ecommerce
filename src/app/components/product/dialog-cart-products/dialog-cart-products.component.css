@@ -1,0 +1,21 @@
+.padding-icon-dialog-cart{
+    padding-top: 0px;
+}
+
+.line-list{
+    height: 90%; 
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center
+}
+
+.padding-span{
+    padding: 4px;
+}
+
+.div-buttons-add-remove{
+    width: 8%;
+    border-radius: 5%;
+    border: 1px solid hsl(244, 35%, 45%);
+}

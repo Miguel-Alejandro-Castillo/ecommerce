@@ -1,0 +1,17 @@
+<!-- <div class=""> -->
+  <p-dialog
+    [showHeader]="false"
+    [draggable]="false"
+    [resizable]="false"
+    [visible]="loadingService.observableLoading() | async"
+    [closeOnEscape]="false"
+    [closable]="false"
+    [modal]="true"
+    [responsive]="true"
+    #loadingComponent
+    [baseZIndex]="10000"
+  >
+      <p-progressSpinner  strokeWidth="1"></p-progressSpinner>
+      <!-- <p>Cargando...</p> -->
+  </p-dialog>
+<!-- </div> -->

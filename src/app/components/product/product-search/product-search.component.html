@@ -1,0 +1,15 @@
+<form class="example-form">
+  <mat-form-field id="mat-input-search">
+    <input class="inputSearch" matInput [(ngModel)]="searchString" name="searchString" (keyup)="onKeyUp($event)">
+<!--     <mat-icon class="disable-select">search</mat-icon>
+ -->  </mat-form-field>
+  <mat-icon id="mat-icon-search" class="disable-select">search</mat-icon>
+  <!--  <mat-icon class="disable-select">search</mat-icon> -->
+</form>
+
+
+<!-- Search form -->
+<!-- <form class="form-inline md-form form-sm">
+  <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search" mdbInput>
+  <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+</form> -->

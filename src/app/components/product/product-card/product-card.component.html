@@ -1,0 +1,16 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{product.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="product.photo" alt="Photo" class="disable-select" [routerLink]="['../edit/', 1]">
+  <mat-card-content>
+    <p>
+      {{product.description}}
+    </p>
+    <span>{{product.price | currency}}</span>
+  </mat-card-content>
+
+  <mat-card-actions>
+      <ng-content select="app-buttons-shop"></ng-content>
+  </mat-card-actions>
+</mat-card>

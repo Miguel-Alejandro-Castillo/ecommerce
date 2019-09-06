@@ -1,0 +1,36 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <input type="hidden" formControlName="id">
+    <label for="name"> Nombre: </label>
+    <input id="name" type="text" formControlName="name">
+    <app-messages-error [input]="name"></app-messages-error>
+    <br/>    
+  
+    <label for="description"> Descripcion: </label>
+    <textarea id="description" type="textarea" formControlName="description" rows="3" cols="20"></textarea>
+    <app-messages-error [input]="description"></app-messages-error>
+    <br/>
+
+    <label for="trademark"> Marca: </label>
+    <input id="trademark" type="text" formControlName="trademark">
+    <app-messages-error [input]="trademark"></app-messages-error>
+      <br/>
+
+    <label for="year"> Año: </label>
+    <input id="year" type="number" formControlName="year">
+    <app-messages-error [input]="year"></app-messages-error>
+    
+    <br/>
+    <label for="price"> Precio: </label>
+    <input id="price" type="number" formControlName="price">
+    <app-messages-error [input]="price"></app-messages-error>
+      <br/>
+      
+    <input type="hidden" formControlName="photo"> 
+
+    <button type="submit" [disabled]="productForm.invalid" >Submit</button>
+  
+  </form>
+
+ {{ 'invalid:' + productForm.invalid }}
+ {{ 'valid:' + productForm.valid }}
+ {{ 'tocuched:' + productForm.touched }}

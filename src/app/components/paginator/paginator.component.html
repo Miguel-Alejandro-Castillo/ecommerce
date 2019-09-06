@@ -1,0 +1,52 @@
+<div class="paginator" *ngIf="showPaginator()">
+  <a
+    [href]="disablePrevious ? '' : '#'"
+    class="paginator__link"
+    [ngClass]="{ 'paginator__link--disabled': disablePrevious }"
+    (click)="onClickPrevious($event)"
+  >
+    <mat-icon class="paginator__mat-icon">keyboard_arrow_left</mat-icon>
+    <span *ngIf="showTags">previous</span>
+  </a>
+
+  <ng-container *ngIf="showBegin">
+    <a
+      href="#"
+      class="paginator__page"
+      [ngClass]="{ 'paginator__page--active': currentPage === 0 }"
+      (click)="onClickPage(0, $event)"
+      >1</a
+    >
+    <span class="paginator__ellipses">...</span>
+  </ng-container>
+
+  <a
+    href="#"
+    class="paginator__page"
+    [ngClass]="{ 'paginator__page--active': currentPage === page }"
+    *ngFor="let page of middlePages"
+    (click)="onClickPage(page, $event)"
+    >{{ page + 1 }}</a
+  >
+
+  <ng-container *ngIf="showEnd">
+    <span class="paginator__ellipses">...</span>
+    <a
+      [href]="currentPage === totalPages - 1 ? '' : '#'"
+      class="paginator__page"
+      [ngClass]="{ 'paginator__page--active': currentPage === totalPages - 1 }"
+      (click)="onClickPage(totalPages - 1, $event)"
+      >{{ totalPages }}</a
+    >
+  </ng-container>
+
+  <a
+    [href]="disableNext ? '' : '#'"
+    class="paginator__link"
+    [ngClass]="{ 'paginator__link--disabled': disableNext }"
+    (click)="onClickNext($event)"
+  >
+    <span *ngIf="showTags">next</span>
+    <mat-icon class="paginator__mat-icon">keyboard_arrow_right</mat-icon>
+  </a>
+</div>

@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Carrito</h1>
+<div mat-dialog-content>
+  <ng-container *ngIf="data.cart && data.cart.length > 0; else cart_empty">
+    <mat-list>
+      <mat-list-item *ngFor="let item of data.cart; let i = index">
+        <img matListAvatar [src]="item.product.photo" alt="...">
+        <h2 matLine> {{item.product.name}}
+            <mat-icon matListIcon class="pointer disable-select" (click)="add(i, -1)">remove</mat-icon>
+            <span>{{item.cant}}</span>
+            <mat-icon class="pointer disable-select" (click)="add(i, 1)">add</mat-icon>
+        </h2>
+      </mat-list-item>
+    </mat-list>
+  </ng-container>
+  <ng-template #cart_empty>
+    <p>Carrito vacio</p>
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onClose()">Cancelar</button> -->
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

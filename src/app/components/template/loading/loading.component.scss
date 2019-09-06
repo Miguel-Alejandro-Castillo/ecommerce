@@ -1,0 +1,69 @@
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%,
+    90% {
+        stroke: #ffa700;
+    }
+}
+
+body .ui-widget-overlay{
+    background: grey !important;
+    opacity: 0.8 !important;
+}
+
+p-dialog {   
+    .ui-dialog.ui-widget .ui-dialog-content{
+        height: auto !important;
+        min-height: auto !important;
+        max-height: auto !important;
+        padding: 3em 1.5em !important;
+        background-color: grey !important;
+    }
+}
+
+.spinnerLoading{
+    background-color: grey; 
+}
+
+body .ui-dialog .ui-dialog-content{
+    background-color: grey !important;
+}
+
+.loading {
+    width: 80px;
+    margin: 0 0 10px 0;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #fff;
+    -webkit-border-radius: 20px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius: 20px;
+    -moz-border-radius-topleft: 5px;
+    border-radius: 20px;
+    border-top-left-radius: 5px;
+    text-align: center;
+    float: left;
+    opacity: 0;
+    -webkit-animation: fadeIn .5s;
+    -moz-animation: fadeIn .5s;
+    animation: fadeIn .5s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-duration: .5s;
+    -moz-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-delay: .1s;
+    -moz-animation-delay: .1s;
+    animation-delay: .1s
+}

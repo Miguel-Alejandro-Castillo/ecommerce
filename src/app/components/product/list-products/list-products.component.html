@@ -1,0 +1,38 @@
+<ng-template #templatePortalContent>
+  <app-paginator [(currentPage)]="currentPage"  [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"></app-paginator>
+</ng-template>
+
+<h2>Lista de Productos</h2>
+
+<div class="row">
+  <div class="column">
+    <app-product-search (query)="filter$.next($event)"></app-product-search>
+  </div>
+  <div class="column icon-shop">
+    <mat-icon class="icon-shop" [matBadge]="cantProducts()" matBadgeSize="medium" matBadgeColor="warn" (click)="openDialog()">
+      shopping_cart
+    </mat-icon>
+  </div>
+  <div class="column icon-shop">
+    <mat-icon class="icon-shop"  matBadgeSize="medium" matBadgeColor="warn" (click)="retry$.next()">
+      shopping_cart
+    </mat-icon>
+  </div>
+</div>
+<h1 style="color:red" *ngIf="errors$ | async">ERROR!</h1>
+<ng-container *ngIf="filteredProducts$ | async as filteredProducts">
+  <ng-container *ngIf="filteredProducts.length > 0; else noProducts">
+    <mat-grid-list cols="4" rowHeight="3:4">
+      <mat-grid-tile *ngFor="let product of filteredProducts">
+        <app-product-card [product]="product">
+            <app-buttons-shop (add)="onAddProduct(product)" (remove)="onRemoveProduct(product)"></app-buttons-shop>
+        </app-product-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-container>
+  <ng-template #noProducts>
+    <h4>No se encontraron productos</h4>
+  </ng-template>
+</ng-container>
+
+<!-- <mat-spinner></mat-spinner> -->
