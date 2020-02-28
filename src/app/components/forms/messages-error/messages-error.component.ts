@@ -1,25 +1,72 @@
-import {
-  Component,
-  OnInit,
-  Input,
+import { Component, Input, OnInit, ViewContainerRef,  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  DoCheck
-} from '@angular/core';
+  OnDestroy, } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-// import { ChangeDetectionStrategy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { map, distinctUntilChanged } from 'rxjs/operators';
+import {TranslateService} from '@ngx-translate/core';
+
+export interface AppError {
+  code: string;
+  parameters: { [key: string]: string };
+}
 
 @Component({
   selector: 'app-messages-error',
   templateUrl: './messages-error.component.html',
-  styleUrls: ['./messages-error.component.css']/* ,
-  changeDetection: ChangeDetectionStrategy.OnPush */
+  styleUrls: [
+    './messages-error.component.css'
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MessagesErrorComponent implements OnInit {
+export class MessagesErrorComponent implements OnInit,  OnDestroy  {
+
+
   //  @ContentChild(AbstractControl) input: AbstractControl;
 
- /*  lastValue = false; */
- @Input()
-  input: AbstractControl;
+  /*  lastValue = false; */
+
+  private _messages: string[] = [];
+
+  private translateService: TranslateService;
+  constructor(private changeDetector: ChangeDetectorRef,
+              private viewContainerRef: ViewContainerRef,
+              translate: TranslateService) {
+              this.translateService = translate;
+  }
+
+  private subscriptions: Subscription[] = [];
+
+  messages$: Observable<AppError[]>;
+
+
+  private _input: AbstractControl;
+  @Input() set input(control: AbstractControl) {
+
+    this._input = control;
+
+    if (this._input) {
+      this.subscriptions.push(this._input.statusChanges.subscribe(() => {
+        this.check();
+      }));
+      this.check();
+    } else {
+      this.changeDetector.markForCheck();
+    }
+  }
+
+  private check() {
+    const errors: AppError[] = this._input.errors ? Object.values(this._input.errors) :  [];
+    this._messages = errors.map((error: AppError) => this.translateService.instant(error.code, error.parameters) );
+    this.changeDetector.markForCheck();
+  }
+
+  private _touched = false;
+  set touched(value: boolean) {
+    this._touched = value;
+    this.changeDetector.markForCheck();
+  }
+
 
   /* @Input()
   validatorsKeys: string[]; */
@@ -32,7 +79,7 @@ export class MessagesErrorComponent implements OnInit {
     }
   } */
 
- /*  @Input()
+  /*  @Input()
   set input(input: AbstractControl) {
     this._input = input;
     this.cdRef.markForCheck();
@@ -40,12 +87,15 @@ export class MessagesErrorComponent implements OnInit {
     this._input.valueChanges.subscribe(() => this.cdRef.markForCheck());
   } */
 
+  ngOnInit(): void {
+    console.log(this.viewContainerRef);
+  }
 
-  constructor(/* private cdRef: ChangeDetectorRef */) {}
+  ngOnDestroy(): void {
+    for (const subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
+  }
 
-  ngOnInit() {}
-
- /*  private resolveErrorMessage() {
-    //    return "";
-  } */
 }
+

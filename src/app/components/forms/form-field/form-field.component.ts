@@ -5,40 +5,43 @@ import {
   AfterContentInit,
   ContentChildren,
   Query,
-  QueryList
+  QueryList,
+  forwardRef,
+  ChangeDetectionStrategy,
+  DoCheck
 } from '@angular/core';
-import { NgControl, FormControl } from '@angular/forms';
+import { NgControl, FormControl, FormControlName, AbstractControl } from '@angular/forms';
 import { MessagesErrorComponent } from '../messages-error/messages-error.component';
 
 @Component({
   selector: 'app-form-field',
   templateUrl: './form-field.component.html',
-  styleUrls: ['./form-field.component.css']
+  styleUrls: ['./form-field.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormFieldComponent implements AfterContentInit {
-  @ContentChild(NgControl) ngControl: NgControl;
-  @ContentChild(FormControl) formControl: FormControl;
-  // @ContentChild(MessagesErrorComponent) messagesErrorComponent: MessagesErrorComponent;
-  @ContentChildren(MessagesErrorComponent) messagesErrorComponents: QueryList<
-    MessagesErrorComponent
-  >;
+export class FormFieldComponent implements AfterContentInit, DoCheck{
 
+  @ContentChild(forwardRef(() => FormControlName)) formControlName: FormControlName;
+  @ContentChild(forwardRef(() => MessagesErrorComponent)) messagesErrorComponent?: MessagesErrorComponent;
+
+  private touched = false;
   constructor() {}
 
+  private formControl: AbstractControl;
+
   ngAfterContentInit(): void {
-
-    const messagesErrorComponents = this.messagesErrorComponents.toArray();
-    for (const m of messagesErrorComponents) {
-      m.input = this.ngControl.control;
-    }
-
-    /* falta unsuscribe
-    this.messagesErrorComponents.changes.subscribe(messagesErrorComponents => {
-      for (const m of messagesErrorComponents) {
-        m.input = this.ngControl.control;
+      this.formControl = this.formControlName.control;
+      if (this.messagesErrorComponent) {
+        this.messagesErrorComponent.input = this.formControl;
       }
-    });
-    */
-    // this.messagesErrorComponent.input = this.ngControl.control;
+  }
+
+  ngDoCheck(): void {
+    if (this.formControlName && this.formControl && this.formControl.touched !== this.touched) {
+      this.touched = this.formControl.touched;
+      if (this.messagesErrorComponent) {
+        this.messagesErrorComponent.touched = this.touched;
+      }
+    }
   }
 }

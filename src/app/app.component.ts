@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,12 @@ export class AppComponent {
 
   totalItems = 11;
   itemsPerPage = 1;
+
+  public activeLang = 'es';
+  constructor(
+    private translate: TranslateService) {
+    this.translate.setDefaultLang(this.activeLang);
+  }
+  
 
 }

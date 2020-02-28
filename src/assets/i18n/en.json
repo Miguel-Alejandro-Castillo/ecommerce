@@ -1,0 +1,8 @@
+{
+    "required": "Es obligatorio",
+    "min": "El número minimo es {{ min }}",
+    "max": "El número maximo es {{ max }}",
+    "minLength": "Debe tener al menos {{ minLength }} caracteres",
+    "maxLength": "Debe tener a lo sumo {{ maxLength }} caracteres",
+    "betweenYear": "El año debe estar entre {{ yearA }} y {{ yearB }}"
+}

@@ -23,7 +23,6 @@ import {
 import {
   delay,
   startWith,
-  endWith,
   ignoreElements,
   tap,
   finalize,
@@ -43,11 +42,11 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class EditProductComponent implements OnInit {
   product: Product = {
     id: 1,
-    name: 'Gaseosa Coca Cola',
-    description: 'Refrescante y azucarada',
+    name: '',
+    description: '',
     trademark: 'Coca Cola',
-    price: 35.75,
-    year: 1900,
+    price: null,
+    year: 1899,
     photo: '../../../assets/images/coca.jpg'
   };
   productForm: FormGroup;
@@ -96,18 +95,18 @@ export class EditProductComponent implements OnInit {
 
     this.productForm = this.formBuilder.group({
       id: [this.product.id],
-      name: [this.product.name, [Validators.required, Validators.minLength(4)]],
+      name: [this.product.name, [ValidatorsCustom.required(), ValidatorsCustom.minLength(4)]],
       description: [
         this.product.description,
-        [Validators.required, Validators.maxLength(50)]
+        [ValidatorsCustom.required(), ValidatorsCustom.maxLength(50)]
       ],
-      trademark: [this.product.trademark, [Validators.required]],
-      price: [this.product.price, [Validators.required, Validators.min(0)]],
+      trademark: [this.product.trademark, [ValidatorsCustom.required()]],
+      price: [this.product.price, [ValidatorsCustom.required(), ValidatorsCustom.min(0)]],
       year: [
         this.product.year,
         [
-          Validators.required,
-          Validators.min(1900),
+          ValidatorsCustom.required(),
+          ValidatorsCustom.min(1900),
           ValidatorsCustom.betweenYear(1900, new Date().getFullYear())
         ]
       ],
@@ -134,7 +133,6 @@ export class EditProductComponent implements OnInit {
     }); */
 
     // Escuchar cambios del FormControl 'name'
-    this.name.valueChanges.subscribe(nameChanged => console.log(nameChanged));
   }
 
   onSubmit() {
@@ -143,23 +141,4 @@ export class EditProductComponent implements OnInit {
     // Guardar cambios del producto usando un Service(productService)
   }
 
-  get name() {
-    return this.productForm.get('name');
-  }
-
-  get description() {
-    return this.productForm.get('description');
-  }
-
-  get trademark() {
-    return this.productForm.get('trademark');
-  }
-
-  get price() {
-    return this.productForm.get('price');
-  }
-
-  get year() {
-    return this.productForm.get('year');
-  }
 }
